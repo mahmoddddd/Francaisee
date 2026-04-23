@@ -1,0 +1,18 @@
+# Raw source assets — not deployed, kept for editing only
+_assets_raw/
+*.pdf
+*.zip
+txt.txt
+
+# Stray root-level images (duplicates of public/)
+/WhatsApp Image*
+/city hub place.png
+
+# Local build artifacts
+.next
+out
+tsconfig.tsbuildinfo
+
+# Docs/meta not needed at runtime
+README.md
+.claude/
