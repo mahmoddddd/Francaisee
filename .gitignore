@@ -1,0 +1,23 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+.vercel
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# Raw source assets — not part of the deployable app
+_assets_raw/
+*.pdf
+*.zip
+WhatsApp\ Image*.jpeg
+WhatsApp\ Image*.jpg
+txt.txt
+city\ hub\ place.png
+
+# Images — large files, manage separately (upload to CDN or Vercel blob)
+public/images/

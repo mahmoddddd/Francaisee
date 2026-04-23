@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    background-color: #ffffff;
+    color: #111827;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: #dc2626;
+    color: white;
+  }
+
+  html[dir='rtl'] body {
+    letter-spacing: 0;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-brand-500;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-sm font-bold text-white shadow-brand transition-all duration-300 hover:bg-brand-600 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-bold text-gray-800 transition hover:border-gray-400 hover:bg-gray-50;
+  }
+
+  .h-display {
+    @apply font-display font-bold leading-[1.06] tracking-tight text-gray-900;
+  }
+
+  .section {
+    @apply relative py-14 sm:py-20 md:py-28;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    @apply overflow-x-hidden;
+  }
+  body {
+    @apply text-[15px] sm:text-base;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s ease-out, transform 0.85s ease-out;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-left  { animation: marquee-left  var(--marquee-duration, 40s) linear infinite; }
+.marquee-right { animation: marquee-right var(--marquee-duration, 50s) linear infinite; }
+.marquee-pause:hover .marquee-track { animation-play-state: paused; }
