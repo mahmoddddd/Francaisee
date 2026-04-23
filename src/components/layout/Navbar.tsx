@@ -33,13 +33,13 @@ export function Navbar() {
         scrolled ? 'bg-white border-b border-gray-100 shadow-sm' : 'bg-white/80 backdrop-blur-md'
       }`}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between gap-4">
+      <div className="container mx-auto flex h-16 items-center justify-between gap-2 sm:h-20 sm:gap-4">
         {/* Logo */}
-        <Link href={`/${locale}`} className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500">
-            <span className="text-sm font-black text-white">CH</span>
+        <Link href={`/${locale}`} className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 sm:h-9 sm:w-9">
+            <span className="text-xs font-black text-white sm:text-sm">CH</span>
           </div>
-          <span className="text-sm font-black uppercase tracking-[0.25em] text-gray-900">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 sm:text-sm sm:tracking-[0.25em]">
             City Hub
           </span>
         </Link>
