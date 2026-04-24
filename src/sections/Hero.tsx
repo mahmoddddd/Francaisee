@@ -1,28 +1,27 @@
 'use client';
 
 import Image from 'next/image';
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
 
-/* ── brands that cycle in the cinematic frame (skip product-shot brands) ── */
-const SHOWCASE = [
-  { key: 'shakencake', image: '/images/shakencake/sc-20.jpg', accent: '#ff2d87' },
-  { key: 'haret',      image: '/images/haret/img-p14-01.jpeg', accent: '#b5533c' },
-  { key: 'stravo',     image: '/images/stravo/02.jpg',         accent: '#e3392e' },
-  { key: 'jinzo',      image: '/images/jinzo/img-p10-02.jpeg', accent: '#c4382b' },
-  { key: 'tokyotreats',image: '/images/tokyotreats/tokyo-02.jpg', accent: '#dc2626' }
+const HERO_PRODUCTS = [
+  { key: 'jinzo',       image: '/images/jinzo/img-p7-01.jpeg',            tint: '#fef3e7' },
+  { key: 'haret',       image: '/images/haret/img-p11-01.jpeg',           tint: '#f3e9dc' },
+  { key: 'stravo',      image: '/images/stravo/03.jpg',                   tint: '#fde2df' },
+  { key: 'shakencake',  image: '/images/shakencake/sc-20.jpg',            tint: '#fce7f3' },
+  { key: 'tokyotreats', image: '/images/tokyotreats/tokyo-06.jpg',        tint: '#fee2e2' },
+  { key: 'ktown',       image: '/images/ktown/korian-fried-chicken.png',  tint: '#fef3c7' },
 ] as const;
 
-const MARQUEE_ORDER = ['shakencake', 'haret', 'ktown', 'stravo', 'jinzo', 'tokyotreats'] as const;
-
-/* ── word-mask reveal ── */
+/* word-mask reveal — extra vertical padding so Arabic diacritics (shadda,
+   dots above letters) don't clip against the overflow-hidden mask. */
 function WordReveal({ text, delay = 0, className = '' }: { text: string; delay?: number; className?: string }) {
   return (
     <span className={`inline-block overflow-hidden align-bottom ${className}`}>
       <motion.span
-        className="inline-block pb-1 pt-1 rtl:pb-3"
+        className="inline-block pb-2 pt-2 rtl:pb-6 rtl:pt-3"
         initial={{ y: '105%' }}
         animate={{ y: 0 }}
         transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
@@ -37,90 +36,65 @@ export function Hero() {
   const t = useTranslations('hero');
   const tBrands = useTranslations('brands.items');
   const ref = useRef<HTMLElement>(null);
-  const [idx, setIdx] = useState(0);
-
-  /* auto-rotate the showcase every 4.5s */
-  useEffect(() => {
-    const id = setInterval(() => setIdx((i) => (i + 1) % SHOWCASE.length), 4500);
-    return () => clearInterval(id);
-  }, []);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
-  const fade = useTransform(scrollYProgress, [0, 1], [1, 0.25]);
-
-  const current = SHOWCASE[idx];
-  const counter = useMemo(
-    () => `${String(idx + 1).padStart(2, '0')} / ${String(SHOWCASE.length).padStart(2, '0')}`,
-    [idx]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '6%']);
 
   return (
     <section
       ref={ref}
       id="home"
-      className="relative overflow-hidden bg-gray-950 text-white"
+      className="relative overflow-hidden bg-[#fbf8f3] text-gray-900"
     >
-      {/* subtle ambient gradient that shifts with the active brand */}
       <motion.div
-        key={`ambient-${current.key}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.35 }}
-        transition={{ duration: 1.4 }}
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: `radial-gradient(80% 55% at 85% 15%, ${current.accent}55, transparent 60%), radial-gradient(60% 45% at 10% 85%, #ffffff0d, transparent 70%)`
-        }}
-      />
-      {/* fine noise */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
-          backgroundSize: '3px 3px'
-        }}
-      />
-
-      <motion.div
-        style={{ opacity: fade }}
-        className="relative mx-auto grid w-full max-w-[1480px] grid-cols-1 gap-10 px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16 lg:px-14 lg:pt-36 lg:pb-28 xl:px-20"
+        style={{ y }}
+        dir="ltr"
+        className="relative z-10 grid min-h-[92vh] grid-cols-1 items-center gap-16 px-6 pb-16 pt-32 sm:px-10 lg:grid-cols-[1fr_1fr] lg:gap-8 lg:px-0 lg:pb-24 lg:pt-36"
       >
-        {/* ── LEFT: copy ── */}
-        <motion.div style={{ y: textY }} className="relative z-10 flex flex-col justify-center">
-          {/* eyebrow pill */}
+        {/* ── LEFT: editorial text, flush to physical left ── */}
+        <div dir="auto" className="lg:pl-[112px] lg:pr-6">
+          {/* Top rule + eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur"
+            transition={{ duration: 0.6 }}
+            className="mb-8 flex items-center gap-4"
           >
-            <Sparkles className="h-3.5 w-3.5 text-brand-400" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/80 sm:text-xs sm:tracking-[0.26em]">
+            <span className="h-px w-10 bg-brand-500/60 sm:w-16" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-brand-600 sm:text-xs">
               {t('eyebrow')}
             </span>
           </motion.div>
 
-          {/* headline */}
-          <h1 className="h-display text-[2.7rem] font-black leading-[0.95] rtl:leading-[1.2] tracking-tight text-white sm:text-[3.6rem] md:text-[4.6rem] lg:text-[5.2rem] xl:text-[6.2rem] rtl:space-y-2">
+          {/* Massive editorial headline.
+              RTL gets looser leading + more between-line air so diacritics
+              and descenders don't touch the line above. */}
+          <h1 className="h-display font-black leading-[0.95] tracking-tight text-gray-900 text-[3rem] sm:text-[4.4rem] md:text-[5rem] lg:text-[5.5rem] xl:text-[6.5rem] space-y-1 rtl:space-y-4 sm:rtl:space-y-6">
             <div className="block"><WordReveal text={t('title.line1')} delay={0.15} /></div>
-            <div className="block"><WordReveal text={t('title.line2')} delay={0.27} /></div>
-            <div className="block">
+            <div className="block -ms-0 ps-0 sm:ps-4 lg:ps-8"><WordReveal text={t('title.line2')} delay={0.27} /></div>
+            <div className="relative block ps-0 sm:ps-10 lg:ps-16">
               <WordReveal
                 text={t('title.line3')}
                 delay={0.39}
-                className="bg-gradient-to-r from-brand-400 via-brand-500 to-brand-600 bg-clip-text text-transparent"
+                className="text-brand-500"
+              />
+              {/* subtle accent under the last word */}
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.9, delay: 1.25, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute bottom-[8%] left-0 block h-[6px] w-16 origin-left rounded-full bg-brand-500/30 sm:h-2 sm:w-24 rtl:origin-right"
+                aria-hidden
               />
             </div>
           </h1>
 
-          {/* lead */}
+          {/* Lead */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-            className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60 sm:mt-8 sm:text-base md:text-lg"
+            transition={{ duration: 0.7, delay: 0.7 }}
+            className="mt-8 max-w-xl text-[15px] leading-relaxed text-gray-600 sm:mt-10 sm:text-base md:text-lg"
           >
             {t('lead')}
           </motion.p>
@@ -129,170 +103,93 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-            className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4"
+            transition={{ duration: 0.7, delay: 0.85 }}
+            className="mt-8 flex flex-wrap items-center gap-5 sm:mt-10"
           >
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-gradient-to-br from-brand-500 to-brand-600 px-7 py-3.5 text-sm font-bold text-white shadow-[0_12px_36px_-10px_rgba(220,38,38,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-10px_rgba(220,38,38,0.9)] sm:px-8 sm:py-4"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-gray-900 px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-500 sm:px-8 sm:py-4"
             >
-              <span className="relative z-10">{t('cta')}</span>
-              <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
-              <span className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]" />
+              {t('cta')}
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
             </a>
             <a
               href="#brands"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold text-white/90 backdrop-blur transition hover:border-white/40 hover:bg-white/10 hover:text-white sm:px-8 sm:py-4"
+              className="group inline-flex items-center gap-2 text-sm font-bold text-gray-900 transition-colors hover:text-brand-500"
             >
-              {t('secondaryCta')}
-              <span className="text-base transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180">→</span>
+              <span className="relative pb-1">
+                {t('secondaryCta')}
+                <span className="absolute inset-x-0 bottom-0 h-px bg-gray-900 transition-colors duration-300 group-hover:bg-brand-500" />
+              </span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">→</span>
             </a>
           </motion.div>
 
-          {/* stats */}
+          {/* Stats — left-aligned horizontal */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.05 }}
-            className="mt-12 grid grid-cols-3 gap-0 divide-x divide-white/10 border-t border-white/10 pt-6 rtl:divide-x-reverse sm:mt-16 sm:pt-8"
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="mt-12 flex w-fit items-stretch divide-x divide-gray-300 border-t border-gray-300 pt-7 rtl:divide-x-reverse sm:mt-14 sm:pt-9"
           >
-            {(['brands', 'cuisines', 'system'] as const).map((k) => (
-              <div key={k} className="flex flex-col pe-4 ps-0 first:ps-0 sm:pe-8 rtl:pe-0 rtl:ps-4 sm:rtl:ps-8">
-                <span className="text-2xl font-black tabular-nums text-white sm:text-4xl md:text-5xl">
+            {(['brands', 'cuisines', 'system'] as const).map((k, i) => (
+              <div
+                key={k}
+                className={`flex flex-col items-start text-start ${i === 0 ? 'pe-6 sm:pe-10' : 'px-6 sm:px-10'}`}
+              >
+                <span className="text-2xl font-black tabular-nums text-gray-900 sm:text-3xl md:text-4xl">
                   {t(`stats.${k}.value`)}
                 </span>
-                <span className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-white/40 sm:text-[10px] sm:tracking-[0.24em]">
+                <span className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.22em] text-gray-500 sm:text-[10px] sm:tracking-[0.26em]">
                   {t(`stats.${k}.label`)}
                 </span>
               </div>
             ))}
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* ── RIGHT: cinematic rotating frame ── */}
-        <motion.div
-          style={{ y: imgY }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative order-first w-full lg:order-none"
-        >
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[560px] overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.7)] lg:aspect-[4/5] lg:max-w-none">
-            {/* crossfading brand images */}
-            <AnimatePresence initial={false} mode="sync">
+        {/* ── RIGHT: six staggered island-shaped product cards ── */}
+        <div className="relative mx-auto h-[580px] w-full max-w-[600px] sm:h-[680px] lg:h-[760px] lg:pr-10">
+          {/* Soft backdrop blob for editorial depth */}
+          <div className="absolute -right-10 top-1/2 h-[70%] w-[70%] -translate-y-1/2 rounded-full bg-brand-500/10 blur-3xl" aria-hidden />
+
+          {HERO_PRODUCTS.map((p, i) => {
+            const name = tBrands(`${p.key}.name`);
+
+            // Zigzag positions + organic island-like border-radius (each unique)
+            const layouts = [
+              { pos: 'top-[0%] right-[4%]',     size: 'h-[30%] w-[52%]', rotate: -5, blob: '62% 38% 55% 45% / 48% 58% 42% 52%' },
+              { pos: 'top-[14%] left-[0%]',     size: 'h-[28%] w-[50%]', rotate:  5, blob: '40% 60% 30% 70% / 60% 40% 65% 35%' },
+              { pos: 'top-[34%] right-[14%]',   size: 'h-[30%] w-[54%]', rotate: -3, blob: '55% 45% 70% 30% / 35% 65% 45% 55%' },
+              { pos: 'top-[52%] left-[6%]',     size: 'h-[28%] w-[50%]', rotate:  4, blob: '70% 30% 60% 40% / 50% 50% 35% 65%' },
+              { pos: 'top-[68%] right-[2%]',    size: 'h-[30%] w-[54%]', rotate: -4, blob: '35% 65% 45% 55% / 60% 40% 55% 45%' },
+              { pos: 'bottom-[0%] left-[-2%]',  size: 'h-[28%] w-[52%]', rotate:  3, blob: '50% 50% 40% 60% / 45% 55% 65% 35%' },
+            ] as const;
+            const L = layouts[i];
+
+            return (
               <motion.div
-                key={current.key}
-                initial={{ opacity: 0, scale: 1.08 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0"
+                key={p.key}
+                initial={{ opacity: 0, y: 60, scale: 0.85, rotate: 0 }}
+                animate={{ opacity: 1, y: 0, scale: 1, rotate: L.rotate }}
+                transition={{ delay: 0.4 + i * 0.12, duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ rotate: 0, scale: 1.06, zIndex: 20, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
+                className={`absolute ${L.pos} ${L.size} overflow-hidden shadow-[0_28px_60px_-18px_rgba(17,17,17,0.35)] ring-1 ring-black/5`}
+                style={{ background: p.tint, borderRadius: L.blob }}
               >
                 <Image
-                  src={current.image}
-                  alt={tBrands(`${current.key}.name`)}
+                  src={p.image}
+                  alt={name}
                   fill
-                  priority={idx === 0}
-                  sizes="(min-width:1024px) 50vw, 100vw"
-                  className="object-cover"
+                  sizes="(min-width:1024px) 22vw, 45vw"
+                  priority={i < 3}
+                  className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.08]"
                 />
               </motion.div>
-            </AnimatePresence>
-
-            {/* top gradient for counter */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
-            {/* bottom gradient for info card */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-            {/* counter */}
-            <div className="absolute top-5 start-5 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-white/80 sm:top-6 sm:start-6">
-              <span
-                className="h-1.5 w-1.5 rounded-full shadow-[0_0_12px_currentColor]"
-                style={{ color: current.accent, background: current.accent }}
-              />
-              <span className="tabular-nums">{counter}</span>
-            </div>
-
-            {/* brand info card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`card-${current.key}`}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-x-5 bottom-5 sm:inset-x-6 sm:bottom-6"
-              >
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl sm:p-5">
-                  <div
-                    className="text-[10px] font-bold uppercase tracking-[0.22em]"
-                    style={{ color: current.accent }}
-                  >
-                    {tBrands(`${current.key}.name`)}
-                  </div>
-                  <div className="mt-1 text-sm font-black text-white sm:text-base">
-                    {tBrands(`${current.key}.cuisine`)}
-                  </div>
-                  <div className="mt-2 flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                    </span>
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">
-                      {t('badge.status')}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* progress dots for the rotation */}
-            <div className="absolute end-5 top-5 flex items-center gap-1.5 sm:end-6 sm:top-6">
-              {SHOWCASE.map((s, i) => (
-                <button
-                  key={s.key}
-                  onClick={() => setIdx(i)}
-                  aria-label={s.key}
-                  className={`h-1 rounded-full transition-all duration-500 ${
-                    i === idx ? 'w-6 bg-white' : 'w-3 bg-white/30 hover:bg-white/60'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* decorative floating accent ring */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-8 -start-8 -z-10 hidden h-40 w-40 rounded-full blur-3xl lg:block"
-            style={{ background: `${current.accent}55` }}
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* ── BRAND TICKER — edge-to-edge marquee ── */}
-      <div className="relative border-t border-white/10 bg-black/40">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-gray-950 to-transparent sm:w-32" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-gray-950 to-transparent sm:w-32" />
-        <div className="marquee-pause overflow-hidden py-5 sm:py-6" dir="ltr">
-          <div
-            className="marquee-track marquee-left gap-12 sm:gap-16"
-            style={{ ['--marquee-duration' as string]: '40s' }}
-          >
-            {[...MARQUEE_ORDER, ...MARQUEE_ORDER, ...MARQUEE_ORDER].map((key, i) => (
-              <div key={`${key}-${i}`} className="flex flex-none items-center gap-4 sm:gap-6">
-                <span className="font-display text-xl font-black uppercase tracking-wide text-white sm:text-2xl md:text-3xl">
-                  {tBrands(`${key}.name`)}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-white/40 sm:text-xs">
-                  {tBrands(`${key}.cuisine`)}
-                </span>
-                <span className="h-1 w-1 rounded-full bg-white/25" />
-              </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

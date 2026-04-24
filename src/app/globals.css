@@ -20,6 +20,7 @@
 
   html[dir='rtl'] body {
     letter-spacing: 0;
+    line-height: 1.85;
   }
 
   html[lang='en'] {
@@ -89,3 +90,38 @@
 .marquee-left  { animation: marquee-left  var(--marquee-duration, 40s) linear infinite; }
 .marquee-right { animation: marquee-right var(--marquee-duration, 50s) linear infinite; }
 .marquee-pause:hover .marquee-track { animation-play-state: paused; }
+
+/* ── Arabic typography overrides ──
+   Arabic glyphs (descenders, tashkeel) need extra leading. These rules sit
+   outside Tailwind layers so they take precedence over utility classes
+   like `leading-relaxed` and `leading-tight` which are tuned for Latin. */
+html[dir='rtl'] p,
+html[dir='rtl'] blockquote,
+html[dir='rtl'] figcaption {
+  line-height: 1.95;
+}
+
+html[dir='rtl'] li {
+  line-height: 1.9;
+  margin-block: 0.15em;
+}
+
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3 {
+  line-height: 1.4;
+}
+
+html[dir='rtl'] h4,
+html[dir='rtl'] h5,
+html[dir='rtl'] h6 {
+  line-height: 1.55;
+}
+
+/* Hero headline runs very large and has a per-line structure.
+   Arabic diacritics (shadda, fatha, dots) sit well above the baseline and
+   get clipped by tight leading, so we give each line plenty of vertical air. */
+html[dir='rtl'] .h-display {
+  line-height: 1.45;
+  letter-spacing: 0;
+}
