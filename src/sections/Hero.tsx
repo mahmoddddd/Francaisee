@@ -274,7 +274,7 @@ export function Hero() {
       <div className="relative border-t border-white/10 bg-black/40">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-gray-950 to-transparent sm:w-32" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-gray-950 to-transparent sm:w-32" />
-        <div className="marquee-pause overflow-hidden py-5 sm:py-6">
+        <div className="marquee-pause overflow-hidden py-5 sm:py-6" dir="ltr">
           <div
             className="marquee-track marquee-left gap-12 sm:gap-16"
             style={{ ['--marquee-duration' as string]: '40s' }}

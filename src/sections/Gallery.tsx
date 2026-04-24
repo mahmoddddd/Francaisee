@@ -38,7 +38,7 @@ function MarqueeRow({
   // Duplicate the list so the 50% translate loop is seamless.
   const loop = [...items, ...items];
   return (
-    <div className="marquee-pause overflow-hidden">
+    <div className="marquee-pause overflow-hidden" dir="ltr">
       <div
         className={`marquee-track gap-4 ${
           direction === 'left' ? 'marquee-left' : 'marquee-right'

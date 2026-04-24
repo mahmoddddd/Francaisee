@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
-import { Check } from 'lucide-react';
+import { Check, Quote } from 'lucide-react';
 
 export function Support() {
   const t = useTranslations('support');
@@ -13,23 +13,37 @@ export function Support() {
     <section className="section bg-gray-50">
       <div className="container mx-auto">
         <div className="flex flex-col gap-16 sm:gap-24">
-          {/* Vision Full-Width Banner */}
+          {/* Vision — editorial pull-quote on light cream */}
           <Reveal direction="up">
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-brand-500 p-8 text-white shadow-xl sm:p-12 md:p-16 lg:p-20">
-              {/* Decorative glows */}
-              <div className="absolute -end-20 -top-20 h-64 w-64 rounded-full bg-white/20 blur-3xl" />
-              <div className="absolute -start-20 -bottom-20 h-64 w-64 rounded-full bg-black/10 blur-3xl" />
-              
-              <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                <div className="max-w-4xl">
-                  <div className="text-xs font-bold uppercase tracking-[0.25em] text-white/70">
+            <div className="relative isolate overflow-hidden bg-[#faf6ef] px-6 py-14 sm:px-10 sm:py-20 md:px-16 md:py-24 lg:px-20">
+              {/* dotted grid pattern */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-60"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at 1px 1px, #d9cfbd 1px, transparent 0)',
+                  backgroundSize: '22px 22px'
+                }}
+              />
+              {/* brand accent bar (left on LTR, right on RTL via start-0) */}
+              <div className="absolute inset-y-10 start-0 w-1.5 bg-brand-500 sm:inset-y-16" />
+              {/* giant ghost quote glyph */}
+              <Quote
+                aria-hidden
+                className="pointer-events-none absolute -start-4 -top-6 h-40 w-40 text-brand-500/10 sm:-start-6 sm:-top-10 sm:h-64 sm:w-64 md:h-80 md:w-80 rtl:scale-x-[-1]"
+                strokeWidth={1}
+              />
+
+              <div className="relative z-10 mx-auto grid max-w-5xl gap-6 md:grid-cols-[auto_1fr] md:items-end md:gap-12">
+                <div className="flex flex-col gap-3 md:gap-4">
+                  <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-brand-500 sm:text-xs">
+                    <span className="h-px w-8 bg-brand-500 sm:w-12" />
                     {visionT('eyebrow')}
-                  </div>
-                  <blockquote className="mt-4 text-2xl font-black leading-tight sm:mt-6 sm:text-3xl md:text-4xl lg:text-5xl">
-                    {visionT('title')}
-                  </blockquote>
+                  </span>
                 </div>
-                <div className="hidden h-1.5 w-20 shrink-0 rounded-full bg-white/30 md:block" />
+                <blockquote className="font-display text-2xl font-black leading-[1.15] text-gray-900 sm:text-3xl md:text-4xl lg:text-[2.8rem] xl:text-5xl">
+                  {visionT('title')}
+                </blockquote>
               </div>
             </div>
           </Reveal>
