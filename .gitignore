@@ -12,6 +12,7 @@ tsconfig.tsbuildinfo
 # Raw source assets — not part of the deployable app
 *.pdf
 *.zip
+*.docx
 txt.txt
 
 # Archived/unused images — kept locally for reference, not deployed
