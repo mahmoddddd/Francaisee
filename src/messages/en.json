@@ -13,7 +13,11 @@
     "process": "Franchise Process",
     "contact": "Contact",
     "cta": "Start Your Journey",
-    "language": "العربية"
+    "language": "العربية",
+    "viewAllBrands": "View all brands",
+    "backToBrands": "Back to all brands",
+    "toggleMenu": "Toggle menu",
+    "logoAria": "City Hub"
   },
   "hero": {
     "eyebrow": "Strategic management & professional consulting",
@@ -26,6 +30,10 @@
     "subline": "From the idea to the operation.",
     "cta": "Start Your Investment Journey",
     "secondaryCta": "Explore our brands",
+    "imageAlt": "City Hub brands",
+    "badge": {
+      "status": "Available for franchise"
+    },
     "stats": {
       "brands": { "value": "6", "label": "Operating brands" },
       "cuisines": { "value": "6", "label": "Global cuisines" },
@@ -39,7 +47,13 @@
       "City Hub is more than a developer or operator — it's a fully integrated ecosystem for the F&B sector.",
       "We provide integrated consulting services and solutions that connect marketing, operations, and financial management under one umbrella.",
       "From building strong concepts to operating successful brands and developing high-potential locations — we create structured systems that scale."
-    ]
+    ],
+    "cta": "Explore our brands",
+    "card": {
+      "eyebrow": "Ecosystem",
+      "title": "F&B · MENA · Africa",
+      "count": "6 brands"
+    }
   },
   "services": {
     "eyebrow": "What we do",
@@ -73,6 +87,11 @@
     "title": "Our Brands Portfolio",
     "tagline": "Different concepts. One system.",
     "cta": "Franchise this brand",
+    "instagram": "Instagram",
+    "openOutlet": "Open an outlet",
+    "questionTemplate": "Is {name} the brand you've been looking for?",
+    "ctaSubtitle": "Submit your franchise request and our investment team will reach out within 48 hours.",
+    "submitRequest": "Submit your request",
     "items": {
       "jinzo": { "name": "Jinzo", "cuisine": "Mexican Street Food", "blurb": "Bold, loud, and unmistakably Mexican — a street-food concept built for speed and scale." },
       "shakencake": { "name": "Shake N Cake", "cuisine": "Milkshake Bar & Café", "blurb": "An over-the-top milkshake experience with desserts and savory shareables — instantly Instagrammable." },
@@ -81,6 +100,12 @@
       "stravo": { "name": "Stravo", "cuisine": "Italian Street Food", "blurb": "Italian street food made fast and fun without losing the soul of the cuisine." },
       "tokyotreats": { "name": "Tokyo Treats", "cuisine": "Japanese Desserts", "blurb": "Japanese-inspired desserts with a playful modern twist — a destination concept." }
     }
+  },
+  "gallery": {
+    "eyebrow": "Inside our brands",
+    "title": "Real moments from the experience",
+    "brandEyebrow": "Inside the brand",
+    "brandTitle": "From the experience"
   },
   "why": {
     "eyebrow": "Why City Hub",
@@ -97,6 +122,16 @@
   "process": {
     "eyebrow": "Franchise process",
     "title": "From request to launch — 6 structured steps",
+    "badgeSteps": "6 steps",
+    "journeyEyebrow": "Your Franchise Journey",
+    "badgeLine1": "From idea to operation —",
+    "badgeLine2": "Under one roof.",
+    "cta": "Start your journey now",
+    "miniStats": [
+      { "value": "48", "label": "Hours to reply" },
+      { "value": "6", "label": "Brands" },
+      { "value": "1", "label": "Unified system" }
+    ],
     "steps": [
       { "title": "Submit your request", "description": "Share your city, budget, and preferred brand. We review within 48 hours." },
       { "title": "Discovery meeting", "description": "We align on your goals, experience, and investment readiness." },
@@ -121,6 +156,27 @@
       { "title": "Financial monitoring", "description": "Dashboards and controls to protect margin." },
       { "title": "Performance optimization", "description": "Continuous improvement based on real store data." }
     ]
+  },
+  "stats": {
+    "eyebrow": "Expanding Presence",
+    "title": "Our Regional Footprint",
+    "subtitle": "City Hub scales across Egypt, the Middle East, and Africa — one system, replicable brands.",
+    "items": [
+      { "value": "6", "label": "Brands" },
+      { "value": "+8", "label": "Target Countries" },
+      { "value": "+20", "label": "Outlets Pipeline" },
+      { "value": "1", "label": "Unified System" }
+    ],
+    "regions": {
+      "egypt": "Egypt",
+      "ksa": "Saudi Arabia",
+      "uae": "UAE",
+      "kuwait": "Kuwait",
+      "qatar": "Qatar",
+      "jordan": "Jordan",
+      "morocco": "Morocco",
+      "nigeria": "Nigeria"
+    }
   },
   "vision": {
     "eyebrow": "Our vision",
@@ -166,7 +222,14 @@
   },
   "closing": {
     "line1": "City Hub — From idea to operation.",
-    "line2": "One system. Endless growth."
+    "line2": "One system. Endless growth.",
+    "cta": "Start your journey"
+  },
+  "floating": {
+    "badge": "6 Brands · Live",
+    "tooltip": "Start your journey with us",
+    "contactAria": "Contact City Hub",
+    "scrollTopAria": "Scroll to top"
   },
   "footer": {
     "description": "City Hub — Strategic management system and professional consulting solutions for the F&B sector.",

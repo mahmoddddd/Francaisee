@@ -73,6 +73,7 @@ function TimelineStep({
 export function Process() {
   const t = useTranslations('process');
   const steps = t.raw('steps') as Array<{ title: string; description: string }>;
+  const miniStats = t.raw('miniStats') as Array<{ value: string; label: string }>;
   const ref = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -147,7 +148,7 @@ export function Process() {
                 className="absolute start-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/95 px-4 py-2 shadow-lg backdrop-blur"
               >
                 <Sparkles className="h-3.5 w-3.5 text-brand-500" />
-                <span className="text-xs font-black text-gray-900">6 خطوات</span>
+                <span className="text-xs font-black text-gray-900">{t('badgeSteps')}</span>
               </motion.div>
 
               {/* Bottom content */}
@@ -159,24 +160,20 @@ export function Process() {
                 className="absolute inset-x-0 bottom-0 p-5 sm:p-8"
               >
                 <div className="mb-2 text-[9px] font-bold uppercase tracking-[0.22em] text-brand-400 sm:mb-3 sm:text-[10px] sm:tracking-[0.28em]">
-                  Your Franchise Journey
+                  {t('journeyEyebrow')}
                 </div>
                 <h3 className="font-display text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl">
-                  من الفكرة للتشغيل —<br />
-                  <span className="text-brand-400">تحت سقف واحد.</span>
+                  {t('badgeLine1')}<br />
+                  <span className="text-brand-400">{t('badgeLine2')}</span>
                 </h3>
 
                 {/* Mini stats row */}
                 <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/15 pt-4 sm:mt-6 sm:gap-4 sm:pt-5">
-                  {[
-                    { v: '٤٨', l: 'ساعة للرد' },
-                    { v: '٦', l: 'براندات' },
-                    { v: '١', l: 'سيستم موحد' }
-                  ].map((s) => (
-                    <div key={s.l}>
-                      <div className="text-xl font-black text-white sm:text-2xl md:text-3xl">{s.v}</div>
+                  {miniStats.map((s) => (
+                    <div key={s.label}>
+                      <div className="text-xl font-black text-white sm:text-2xl md:text-3xl">{s.value}</div>
                       <div className="mt-1 text-[8px] font-bold uppercase tracking-[0.16em] text-white/60 sm:text-[9px] sm:tracking-[0.2em]">
-                        {s.l}
+                        {s.label}
                       </div>
                     </div>
                   ))}
@@ -227,7 +224,7 @@ export function Process() {
                 href="#contact"
                 className="group inline-flex items-center gap-3 rounded-full bg-gray-900 px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-500 hover:shadow-brand"
               >
-                ابدأ رحلتك الآن
+                {t('cta')}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
               </a>
             </motion.div>

@@ -43,6 +43,7 @@ export default async function BrandPage({
 
   const t = await getTranslations('brands.items');
   const nav = await getTranslations('nav');
+  const brands = await getTranslations('brands');
 
   return (
     <>
@@ -58,8 +59,9 @@ export default async function BrandPage({
           blurb={t(`${brand.key}.blurb`)}
           instagram={brand.instagram}
           locale={locale}
-          backLabel={locale === 'ar' ? 'العودة لكل البراندات' : 'Back to all brands'}
+          backLabel={nav('backToBrands')}
           franchiseLabel={nav('cta')}
+          instagramLabel={brands('instagram')}
         />
 
         {brand.gallery && brand.gallery.length > 0 && (

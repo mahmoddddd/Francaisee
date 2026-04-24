@@ -63,12 +63,26 @@ src/
 
 ## Deploying to Vercel
 
-1. Push this repo to GitHub.
-2. Import on Vercel.
-3. Add environment variable `MONGODB_URI` in Vercel project settings.
-4. Deploy — that's it.
+1. Push this repo to GitHub (the raw assets in `_assets_raw/`, PDFs, ZIPs, and WhatsApp images are already excluded via [.gitignore](.gitignore) and [.vercelignore](.vercelignore)).
+2. Import the repo on Vercel — framework auto-detects as Next.js.
+3. In **Project → Settings → Environment Variables**, add (for Production, Preview, Development):
+   - `MONGODB_URI` — MongoDB Atlas connection string
+   - `MONGODB_DB` — e.g. `cityhub`
+4. Click **Deploy**.
 
-MongoDB Atlas is recommended. Create a free cluster, whitelist `0.0.0.0/0` (Vercel serverless), and copy the connection string.
+Deployment knobs live in [vercel.json](vercel.json):
+
+- **Region**: `fra1` (Frankfurt — closest to MENA/EU audience). Change if needed.
+- **Caching**: `/images/*` gets 1-year immutable cache.
+- **Security headers**: `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`.
+
+### MongoDB Atlas
+
+Create a free cluster, whitelist `0.0.0.0/0` in Network Access (required for Vercel serverless — the IPs are not static), and paste the SRV connection string into `MONGODB_URI`.
+
+### Size notes
+
+`public/images/` is ~420MB (Shake N Cake photos alone are 305MB / 60 files). Vercel's hard limit is 100MB per deployment for the static output, **but** `public/` assets are served from the CDN and do not count against the serverless function size. If the deploy is rejected for total size, move the heaviest originals (`public/images/shakencake/`, `public/images/haret/`) to Vercel Blob or Cloudinary and reference them via `remotePatterns` in [next.config.mjs](next.config.mjs).
 
 ## Adding / swapping brand assets
 

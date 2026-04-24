@@ -17,6 +17,7 @@ interface Props {
   locale: string;
   backLabel: string;
   franchiseLabel: string;
+  instagramLabel: string;
 }
 
 export function BrandHero({
@@ -28,7 +29,8 @@ export function BrandHero({
   instagram,
   locale,
   backLabel,
-  franchiseLabel
+  franchiseLabel,
+  instagramLabel
 }: Props) {
   return (
     <section className="relative min-h-[88vh] overflow-hidden bg-gray-900 pt-20">
@@ -121,7 +123,7 @@ export function BrandHero({
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
               >
                 <Instagram className="h-4 w-4" />
-                Instagram
+                {instagramLabel}
               </a>
             )}
           </motion.div>

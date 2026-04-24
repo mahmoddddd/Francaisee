@@ -22,7 +22,7 @@ export function Services() {
 
   return (
     <section id="services" className="section bg-white overflow-hidden">
-      <div className="container mx-auto">
+      <div className="w-full">
 
         {/* Header */}
         <motion.div
@@ -30,7 +30,7 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-12 max-w-2xl text-center sm:mb-20"
+          className="mx-auto mb-12 max-w-2xl px-4 text-center sm:mb-20 sm:px-6"
         >
           <div className="eyebrow justify-center mb-4">{t('eyebrow')}</div>
           <h2 className="h-display text-3xl sm:text-4xl md:text-5xl">{t('title')}</h2>
@@ -39,8 +39,8 @@ export function Services() {
           </p>
         </motion.div>
 
-        {/* Editorial rows */}
-        <div className="space-y-6">
+        {/* Editorial rows — full-bleed */}
+        <div className="space-y-0">
           {items.map((item, i) => {
             const isEven = i % 2 === 0;
             const accent = ACCENTS[i];
@@ -53,12 +53,12 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.8, delay: 0.05 * i, ease: [0.16, 1, 0.3, 1] }}
-                className={`group grid gap-0 overflow-hidden rounded-3xl border border-gray-100 shadow-sm lg:grid-cols-2 ${
+                className={`group grid w-full gap-0 overflow-hidden border-b border-gray-100 lg:grid-cols-2 ${
                   isEven ? '' : 'lg:[&>*:first-child]:order-last'
                 }`}
               >
                 {/* Image half */}
-                <div className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:min-h-[340px]">
+                <div className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:min-h-[480px]">
                   <Image
                     src={img}
                     alt={item.title}
@@ -78,7 +78,7 @@ export function Services() {
                 </div>
 
                 {/* Text half */}
-                <div className="flex flex-col justify-center bg-white px-6 py-8 sm:px-8 sm:py-10 md:px-12 md:py-14">
+                <div className="flex flex-col justify-center bg-white px-6 py-10 sm:px-10 sm:py-14 md:px-16 md:py-20 lg:px-24">
                   {/* Accent line */}
                   <div
                     className="mb-4 h-1 w-8 origin-left transition-all duration-500 group-hover:w-20 sm:mb-5 sm:w-10"

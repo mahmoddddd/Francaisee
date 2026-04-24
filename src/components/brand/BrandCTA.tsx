@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 export function BrandCTA({ accent, name, locale }: Props) {
-  const isAr = locale === 'ar';
+  const t = useTranslations('brands');
   return (
     <section className="section bg-white">
       <div className="container mx-auto">
@@ -24,24 +25,20 @@ export function BrandCTA({ accent, name, locale }: Props) {
                 className="mb-6 text-[10px] font-bold uppercase tracking-[0.28em]"
                 style={{ color: accent }}
               >
-                {isAr ? 'افتح فرع' : 'Open an outlet'}
+                {t('openOutlet')}
               </div>
               <h2 className="h-display text-3xl text-white md:text-5xl">
-                {isAr
-                  ? `هل ${name} هو البراند اللي بتفكر فيه؟`
-                  : `Is ${name} the brand you've been looking for?`}
+                {t('questionTemplate', { name })}
               </h2>
               <p className="mt-5 text-base text-white/60">
-                {isAr
-                  ? 'قدم طلب الفرانشايز وفريق الاستثمار هيتواصل معاك خلال ٤٨ ساعة.'
-                  : 'Submit your franchise request and our investment team will reach out within 48 hours.'}
+                {t('ctaSubtitle')}
               </p>
               <Link
                 href={`/${locale}#contact`}
                 className="group mt-10 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5"
                 style={{ background: accent }}
               >
-                {isAr ? 'قدم طلبك' : 'Submit your request'}
+                {t('submitRequest')}
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>
             </div>

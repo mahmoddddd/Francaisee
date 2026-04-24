@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { BRANDS } from '@/lib/brands';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { BrandMark } from './BrandMark';
 
 const SECTIONS = ['about', 'brands', 'services', 'process', 'contact'] as const;
 
@@ -33,14 +34,12 @@ export function Navbar() {
         scrolled ? 'bg-white border-b border-gray-100 shadow-sm' : 'bg-white/80 backdrop-blur-md'
       }`}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between gap-2 sm:h-20 sm:gap-4">
+      <div className="mx-auto flex w-full max-w-[1400px] h-16 items-center justify-between gap-4 px-4 sm:h-24 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href={`/${locale}`} className="flex items-center gap-2 sm:gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 sm:h-9 sm:w-9">
-            <span className="text-xs font-black text-white sm:text-sm">CH</span>
-          </div>
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 sm:text-sm sm:tracking-[0.25em]">
-            City Hub
+        <Link href={`/${locale}`} className="flex items-center gap-3 sm:gap-4" aria-label={t('logoAria')}>
+          <BrandMark className="h-10 w-10 text-brand-500 sm:h-12 sm:w-12" />
+          <span className="text-sm font-black uppercase tracking-[0.2em] text-gray-900 sm:text-base sm:tracking-[0.25em]">
+            {t('logoAria')}
           </span>
         </Link>
 
@@ -124,7 +123,7 @@ export function Navbar() {
                         onClick={() => setBrandsOpen(false)}
                         className="mt-2 flex items-center justify-center gap-2 border-t border-gray-100 pt-3 text-xs font-bold uppercase tracking-[0.22em] text-brand-500 transition hover:text-brand-600"
                       >
-                        {locale === 'ar' ? 'كل البراندات' : 'View all brands'}
+                        {t('viewAllBrands')}
                         <span className="rtl:rotate-180">→</span>
                       </a>
                     </motion.div>
@@ -155,7 +154,7 @@ export function Navbar() {
           <button
             onClick={() => setOpen((v) => !v)}
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 lg:hidden"
-            aria-label="Toggle menu"
+            aria-label={t('toggleMenu')}
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
@@ -172,7 +171,7 @@ export function Navbar() {
             transition={{ duration: 0.3 }}
             className="overflow-hidden border-t border-gray-100 bg-white lg:hidden"
           >
-            <div className="container mx-auto flex flex-col gap-1 py-4">
+            <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-1 px-4 py-4 sm:px-6 lg:px-8">
               {SECTIONS.map((id) =>
                 id === 'brands' ? (
                   <div key={id}>

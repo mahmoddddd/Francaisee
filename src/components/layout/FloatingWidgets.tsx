@@ -3,8 +3,10 @@
 import { motion, useScroll, useSpring, useMotionValue, useTransform } from 'framer-motion';
 import { MessageCircle, ArrowUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export function FloatingWidgets() {
+  const t = useTranslations('floating');
   /* ── Top scroll progress bar ── */
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
@@ -64,7 +66,7 @@ export function FloatingWidgets() {
           <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
         </span>
         <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-700">
-          6 Brands · Live
+          {t('badge')}
         </span>
       </motion.div>
 
@@ -75,7 +77,7 @@ export function FloatingWidgets() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.2, duration: 0.6, type: 'spring' }}
         className="group fixed bottom-4 end-4 z-40 block sm:bottom-6 sm:end-6"
-        aria-label="Contact City Hub"
+        aria-label={t('contactAria')}
       >
         {/* Outer ping rings — continuous */}
         <span className="absolute inset-0 animate-ping rounded-full bg-brand-500 opacity-25" />
@@ -97,7 +99,7 @@ export function FloatingWidgets() {
 
         {/* Tooltip */}
         <div className="pointer-events-none absolute end-full top-1/2 me-4 -translate-y-1/2 whitespace-nowrap rounded-full bg-gray-900 px-4 py-2 text-xs font-bold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:me-5 rtl:start-full rtl:end-auto rtl:ms-4 rtl:group-hover:ms-5">
-          ابدأ رحلتك معنا
+          {t('tooltip')}
           <span className="absolute top-1/2 -translate-y-1/2 border-4 border-transparent border-s-gray-900 end-full rtl:start-full rtl:end-auto rtl:border-s-transparent rtl:border-e-gray-900" />
         </div>
       </motion.a>
@@ -109,7 +111,7 @@ export function FloatingWidgets() {
         animate={showTop ? { opacity: 1, y: 0, pointerEvents: 'auto' } : { opacity: 0, y: 20, pointerEvents: 'none' }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
         className="group fixed bottom-20 end-4 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-card transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 sm:bottom-24 sm:end-6 sm:h-11 sm:w-11"
-        aria-label="Scroll to top"
+        aria-label={t('scrollTopAria')}
       >
         <ArrowUp className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
       </motion.button>

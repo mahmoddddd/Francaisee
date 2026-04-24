@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 const ROW1 = [
   { src: '/images/shakencake/sc-01.jpg',  aspect: 'aspect-[3/4]' },
@@ -67,6 +67,7 @@ function MarqueeRow({
 export function Gallery() {
   const locale = useLocale();
   const isAr = locale === 'ar';
+  const t = useTranslations('gallery');
 
   return (
     <div className="overflow-hidden bg-gray-900 py-20 md:py-28">
@@ -79,12 +80,10 @@ export function Gallery() {
           className="mx-auto max-w-xl text-center"
         >
           <div className="eyebrow mb-4 justify-center text-brand-400">
-            {isAr ? 'من داخل البراندات' : 'Inside our brands'}
+            {t('eyebrow')}
           </div>
           <h2 className="h-display text-4xl text-white md:text-5xl">
-            {isAr
-              ? 'لحظات حقيقية من التجربة'
-              : 'Real moments from the experience'}
+            {t('title')}
           </h2>
         </motion.div>
       </div>

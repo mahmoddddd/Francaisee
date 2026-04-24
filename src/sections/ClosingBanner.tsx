@@ -15,7 +15,7 @@ export function ClosingBanner() {
             {t('line2')}
           </p>
           <a href="#contact" className="btn-primary mt-8 mx-auto sm:mt-10">
-            ابدأ رحلتك
+            {t('cta')}
             <ArrowRight className="h-4 w-4 rtl:rotate-180" />
           </a>
         </Reveal>

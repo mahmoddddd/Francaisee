@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Reveal } from '@/components/ui/Reveal';
 
 interface Props {
@@ -10,8 +11,8 @@ interface Props {
   locale: string;
 }
 
-export function BrandGallery({ images, accent, locale }: Props) {
-  const isAr = locale === 'ar';
+export function BrandGallery({ images, accent }: Props) {
+  const t = useTranslations('gallery');
   return (
     <section className="section bg-gray-50">
       <div className="container mx-auto">
@@ -21,10 +22,10 @@ export function BrandGallery({ images, accent, locale }: Props) {
               className="mb-4 text-[10px] font-bold uppercase tracking-[0.28em]"
               style={{ color: accent }}
             >
-              {isAr ? 'من داخل البراند' : 'Inside the brand'}
+              {t('brandEyebrow')}
             </div>
             <h2 className="h-display text-4xl md:text-5xl">
-              {isAr ? 'صور من التجربة' : 'From the experience'}
+              {t('brandTitle')}
             </h2>
           </div>
         </Reveal>

@@ -34,7 +34,7 @@ export function About() {
               >
                 <Image
                   src="/images/shakencake/sc-05.jpg"
-                  alt="City Hub brands"
+                  alt={t('title')}
                   fill
                   sizes="(min-width:1024px) 50vw, 100vw"
                   className="object-cover"
@@ -51,14 +51,14 @@ export function About() {
               className="absolute -bottom-6 end-2 rounded-2xl border border-gray-100 bg-white px-4 py-4 shadow-card sm:-end-4 sm:px-6 sm:py-5 md:-end-8"
             >
               <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-brand-500 sm:text-[10px] sm:tracking-[0.22em]">
-                Ecosystem
+                {t('card.eyebrow')}
               </div>
-              <div className="mt-1 text-base font-black text-gray-900 sm:text-xl">F&B · MENA · Africa</div>
+              <div className="mt-1 text-base font-black text-gray-900 sm:text-xl">{t('card.title')}</div>
               <div className="mt-3 flex items-center gap-2">
                 {['#ff2d87', '#e3392e', '#c4382b', '#ff5d3a', '#caa46a', '#ff4d8b'].map((c) => (
                   <span key={c} className="h-2.5 w-2.5 rounded-full" style={{ background: c }} />
                 ))}
-                <span className="text-xs font-semibold text-gray-400">6 brands</span>
+                <span className="text-xs font-semibold text-gray-400">{t('card.count')}</span>
               </div>
             </motion.div>
           </motion.div>
@@ -95,7 +95,7 @@ export function About() {
               href="#brands"
               className="mt-10 inline-flex items-center gap-2 text-sm font-bold text-brand-500 transition hover:text-brand-600"
             >
-              تعرف على براندتنا
+              {t('cta')}
               <span className="rtl:rotate-180 transition-transform group-hover:translate-x-1">→</span>
             </motion.a>
           </motion.div>
