@@ -12,7 +12,7 @@ const SHOWCASE = [
   { key: 'haret',      image: '/images/haret/img-p14-01.jpeg', accent: '#b5533c' },
   { key: 'stravo',     image: '/images/stravo/02.jpg',         accent: '#e3392e' },
   { key: 'jinzo',      image: '/images/jinzo/img-p10-02.jpeg', accent: '#c4382b' },
-  { key: 'tokyotreats',image: '/images/tokyotreats/page-01.jpg', accent: '#dc2626' }
+  { key: 'tokyotreats',image: '/images/tokyotreats/tokyo-02.jpg', accent: '#dc2626' }
 ] as const;
 
 const MARQUEE_ORDER = ['shakencake', 'haret', 'ktown', 'stravo', 'jinzo', 'tokyotreats'] as const;
@@ -20,9 +20,9 @@ const MARQUEE_ORDER = ['shakencake', 'haret', 'ktown', 'stravo', 'jinzo', 'tokyo
 /* ── word-mask reveal ── */
 function WordReveal({ text, delay = 0, className = '' }: { text: string; delay?: number; className?: string }) {
   return (
-    <span className={`inline-block overflow-hidden align-baseline ${className}`}>
+    <span className={`inline-block overflow-hidden align-bottom ${className}`}>
       <motion.span
-        className="inline-block"
+        className="inline-block pb-1 pt-1 rtl:pb-3"
         initial={{ y: '105%' }}
         animate={{ y: 0 }}
         transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
@@ -103,7 +103,7 @@ export function Hero() {
           </motion.div>
 
           {/* headline */}
-          <h1 className="h-display text-[2.7rem] font-black leading-[0.95] tracking-tight text-white sm:text-[3.6rem] md:text-[4.6rem] lg:text-[5.2rem] xl:text-[6.2rem]">
+          <h1 className="h-display text-[2.7rem] font-black leading-[0.95] rtl:leading-[1.2] tracking-tight text-white sm:text-[3.6rem] md:text-[4.6rem] lg:text-[5.2rem] xl:text-[6.2rem] rtl:space-y-2">
             <div className="block"><WordReveal text={t('title.line1')} delay={0.15} /></div>
             <div className="block"><WordReveal text={t('title.line2')} delay={0.27} /></div>
             <div className="block">

@@ -133,7 +133,7 @@ body_para(
     'supporting large-scale construction and infrastructure projects across Egypt. '
     'Skilled in operating Total Station, Auto Level, and GPS / GNSS (RTK) equipment '
     'for accurate setting-out, topographic, and as-built surveys. Trusted contributor '
-    'to top-tier contractors including Hassan Allam, Road Runner, Al-Wataniya, and SAMCRO. '
+    'to top-tier contractors including Hassan Allam, Road Runner, and Al-Watania SAMCO. '
     'Known for precision, reliability on site, and the ability to translate shop drawings '
     'into accurate field execution.'
 )
@@ -235,7 +235,7 @@ experience_block(
 experience_block(
     doc,
     'Site Surveyor',
-    'SAMCRO',
+    'Al-Watania SAMCO',
     '2024 – 2025',
     [
         'Performed layout and control surveys for building and civil works, delivering accurate benchmarks and reference points.',
@@ -247,7 +247,7 @@ experience_block(
 experience_block(
     doc,
     'Surveyor',
-    'Al-Wataniya',
+    'Al-Watania SAMCO',
     '2023 – 2024',
     [
         'Carried out topographic surveys and GPS-based control point establishment on infrastructure projects.',

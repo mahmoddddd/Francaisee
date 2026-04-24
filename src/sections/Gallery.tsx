@@ -5,21 +5,29 @@ import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 
 const ROW1 = [
-  { src: '/images/shakencake/sc-01.jpg',  aspect: 'aspect-[3/4]' },
-  { src: '/images/haret/img-p11-01.jpeg', aspect: 'aspect-[4/5]' },
-  { src: '/images/shakencake/sc-09.jpg',  aspect: 'aspect-[3/4]' },
-  { src: '/images/stravo/02.jpg',         aspect: 'aspect-square' },
-  { src: '/images/haret/img-p14-01.jpeg', aspect: 'aspect-[3/4]' },
-  { src: '/images/shakencake/sc-12.jpg',  aspect: 'aspect-[4/5]' },
+  { src: '/images/shakencake/sc-01.jpg',   aspect: 'aspect-[3/4]' },
+  { src: '/images/haret/img-p11-01.jpeg',  aspect: 'aspect-[4/5]' },
+  { src: '/images/tokyotreats/tokyo-02.jpg', aspect: 'aspect-[3/4]' },
+  { src: '/images/shakencake/sc-09.jpg',   aspect: 'aspect-square' },
+  { src: '/images/stravo/02.jpg',          aspect: 'aspect-[4/5]' },
+  { src: '/images/tokyotreats/tokyo-05.jpg', aspect: 'aspect-[3/4]' },
+  { src: '/images/haret/img-p14-01.jpeg',  aspect: 'aspect-[4/5]' },
+  { src: '/images/jinzo/img-p10-01.jpeg',  aspect: 'aspect-[3/4]' },
+  { src: '/images/tokyotreats/tokyo-08.jpg', aspect: 'aspect-square' },
+  { src: '/images/shakencake/sc-12.jpg',   aspect: 'aspect-[4/5]' },
 ];
 
 const ROW2 = [
-  { src: '/images/shakencake/sc-18.jpg',  aspect: 'aspect-square' },
-  { src: '/images/stravo/04.jpg',         aspect: 'aspect-[3/4]' },
-  { src: '/images/haret/img-p13-01.jpeg', aspect: 'aspect-[4/5]' },
-  { src: '/images/jinzo/img-p7-01.jpeg',  aspect: 'aspect-[3/4]' },
-  { src: '/images/shakencake/sc-15.jpg',  aspect: 'aspect-[4/5]' },
-  { src: '/images/stravo/01.jpg',         aspect: 'aspect-square' },
+  { src: '/images/tokyotreats/tokyo-01.jpg', aspect: 'aspect-[3/4]' },
+  { src: '/images/shakencake/sc-18.jpg',   aspect: 'aspect-square' },
+  { src: '/images/stravo/04.jpg',          aspect: 'aspect-[3/4]' },
+  { src: '/images/tokyotreats/tokyo-06.jpg', aspect: 'aspect-[4/5]' },
+  { src: '/images/haret/img-p13-01.jpeg',  aspect: 'aspect-[3/4]' },
+  { src: '/images/jinzo/img-p7-01.jpeg',   aspect: 'aspect-[4/5]' },
+  { src: '/images/tokyotreats/tokyo-09.jpg', aspect: 'aspect-square' },
+  { src: '/images/shakencake/sc-15.jpg',   aspect: 'aspect-[4/5]' },
+  { src: '/images/tokyotreats/tokyo-11.jpg', aspect: 'aspect-[3/4]' },
+  { src: '/images/stravo/01.jpg',          aspect: 'aspect-square' },
 ];
 
 type Img = { src: string; aspect: string };

@@ -124,8 +124,22 @@ export const BRANDS: BrandConfig[] = [
     accent: '#dc2626',
     bgFrom: '#0a0a0a',
     bgTo: '#1a1a1a',
-    image: '/images/tokyotreats/page-01.jpg',
-    heroImage: '/images/tokyotreats/page-01.jpg',
+    image: '/images/tokyotreats/tokyo-01.jpg',
+    heroImage: '/images/tokyotreats/tokyo-02.jpg',
+    gallery: [
+      '/images/tokyotreats/tokyo-01.jpg',
+      '/images/tokyotreats/tokyo-02.jpg',
+      '/images/tokyotreats/tokyo-03.jpg',
+      '/images/tokyotreats/tokyo-04.jpg',
+      '/images/tokyotreats/tokyo-05.jpg',
+      '/images/tokyotreats/tokyo-06.jpg',
+      '/images/tokyotreats/tokyo-07.jpg',
+      '/images/tokyotreats/tokyo-08.jpg',
+      '/images/tokyotreats/tokyo-09.jpg',
+      '/images/tokyotreats/tokyo-10.jpg',
+      '/images/tokyotreats/tokyo-11.jpg',
+      '/images/tokyotreats/tokyo-12.jpg'
+    ],
     instagram: 'https://www.instagram.com/tokyotreats_eg'
   }
 ];
