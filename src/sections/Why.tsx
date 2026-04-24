@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Factory, Cog, TrendingUp, BarChart3, MapPin, Rocket } from 'lucide-react';
 import { useRef } from 'react';
@@ -10,14 +10,19 @@ const ICONS = [Factory, Cog, TrendingUp, BarChart3, MapPin, Rocket];
 function SpinningContentCard({
   item,
   index,
+  locale,
 }: {
   item: { title: string; description: string };
   index: number;
+  locale: string;
 }) {
   const Icon = ICONS[index] ?? Rocket;
-  // Use English text for the rotating path because Arabic letters disconnect and break on SVG curves.
+  const isAr = locale === 'ar';
+  
   // Repeated twice naturally to fill the circle without forcing textLength.
-  const englishRingText = "CITY HUB \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 F&B ECOSYSTEM \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 CITY HUB \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 F&B ECOSYSTEM \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0";
+  const ringText = isAr
+    ? "سيتي هاب \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 منظومة متكاملة \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 سيتي هاب \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 منظومة متكاملة \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 "
+    : "CITY HUB \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 F&B ECOSYSTEM \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 CITY HUB \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0 F&B ECOSYSTEM \u00A0\u00A0\u00A0\u00A0 • \u00A0\u00A0\u00A0\u00A0";
 
   return (
     <motion.div
@@ -37,7 +42,7 @@ function SpinningContentCard({
         className="absolute inset-6 rounded-full border-[1.5px] border-dashed border-brand-500/30 group-hover:border-brand-500/60 transition-colors duration-500" 
       />
       
-      {/* Rotating English Text SVG */}
+      {/* Rotating Text SVG */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
@@ -49,10 +54,9 @@ function SpinningContentCard({
             d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
             fill="transparent"
           />
-          {/* Removed textLength, increased letterSpacing, lightened color and made it bold */}
-          <text fill="currentColor" fontSize="5.5" fontWeight="900" letterSpacing="6" className="text-white opacity-90 uppercase font-black" style={{ direction: 'ltr' }}>
+          <text fill="currentColor" fontSize="5.5" fontWeight="900" letterSpacing={isAr ? "3" : "6"} className="text-white opacity-90 uppercase font-black" style={{ direction: isAr ? 'rtl' : 'ltr' }}>
             <textPath href={`#circlePath-${index}`} startOffset="0%">
-              {englishRingText}
+              {ringText}
             </textPath>
           </text>
         </svg>
@@ -124,6 +128,7 @@ function CircularContentCard({
 }
 
 export function Why() {
+  const locale = useLocale();
   const t = useTranslations('why');
   const items = t.raw('items') as Array<{ title: string; description: string }>;
   const ref = useRef<HTMLElement>(null);
@@ -160,8 +165,8 @@ export function Why() {
         {/* BOTTOM: Edge-to-Edge Circular Distribution */}
         <div className="mx-auto flex w-full max-w-[1800px] flex-wrap justify-center gap-6 sm:gap-10 lg:gap-12 px-4 lg:px-8 pb-10">
           {items.map((item, i) => {
-            if (i === 1) {
-              return <SpinningContentCard key={item.title} item={item} index={i} />;
+            if (i === 0 || i === 5) {
+              return <SpinningContentCard key={item.title} item={item} index={i} locale={locale} />;
             }
             return <CircularContentCard key={item.title} item={item} index={i} />;
           })}
