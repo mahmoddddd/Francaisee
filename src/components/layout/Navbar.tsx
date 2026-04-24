@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { BRANDS } from '@/lib/brands';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { BrandMark } from './BrandMark';
 
 const SECTIONS = ['about', 'brands', 'services', 'process', 'contact'] as const;
 
@@ -34,10 +33,17 @@ export function Navbar() {
         scrolled ? 'bg-white border-b border-gray-100 shadow-sm' : 'bg-white/80 backdrop-blur-md'
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1400px] h-16 items-center justify-between gap-4 px-4 sm:h-24 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1400px] h-20 items-center justify-between gap-4 px-4 sm:h-28 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center gap-3 sm:gap-4" aria-label={t('logoAria')}>
-          <BrandMark className="h-10 w-10 text-brand-500 sm:h-12 sm:w-12" />
+          <Image
+            src="/images/hero/cityhub-place.png"
+            alt={t('logoAria')}
+            width={260}
+            height={260}
+            priority
+            className="h-14 w-auto sm:h-20 md:h-24"
+          />
           <span className="text-sm font-black uppercase tracking-[0.2em] text-gray-900 sm:text-base sm:tracking-[0.25em]">
             {t('logoAria')}
           </span>

@@ -91,17 +91,17 @@ function BrandPanel({
           </p>
         </div>
 
-        {/* CTA + arrows — always visible on mobile, hover-reveal on desktop */}
-        <div className="absolute inset-x-0 bottom-0 z-20 flex items-end justify-between px-5 pb-5 md:px-7 md:pb-7 lg:opacity-0 lg:translate-y-4 lg:transition-all lg:duration-500 lg:delay-300 lg:ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover:opacity-100 lg:group-hover:translate-y-0">
-          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-white md:text-[11px] md:tracking-[0.28em]">
+        {/* CTA + arrows — desktop only (hover-reveal). Hidden on mobile/tablet to avoid overlap. */}
+        <div className="absolute inset-x-0 bottom-0 z-20 hidden items-end justify-between px-5 pb-5 md:px-7 md:pb-7 lg:flex lg:opacity-0 lg:translate-y-4 lg:transition-all lg:duration-500 lg:delay-300 lg:ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover:opacity-100 lg:group-hover:translate-y-0">
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-white">
             {t('cta')}
           </span>
           <div className="flex items-center gap-2">
-            <span className="hidden h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/10 backdrop-blur-sm md:flex">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/10 backdrop-blur-sm">
               <ArrowUpRight className="h-4 w-4 text-white" />
             </span>
             <span
-              className="flex h-9 w-9 items-center justify-center rounded-full text-gray-900 md:h-11 md:w-11"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-gray-900"
               style={{ background: '#fff' }}
             >
               <ArrowUpRight className="h-4 w-4" />
