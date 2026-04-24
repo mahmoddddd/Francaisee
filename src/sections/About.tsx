@@ -11,6 +11,7 @@ const BRAND_COLORS = ['#ff2d87', '#e3392e', '#c4382b', '#ff5d3a', '#caa46a', '#f
 export function About() {
   const t = useTranslations('about');
   const paragraphs = t.raw('paragraphs') as string[];
+  const miniStats  = t.raw('miniStats') as Array<{ value: string; label: string }>;
   const ref = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
@@ -137,11 +138,7 @@ export function About() {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-10 flex flex-wrap gap-6 border-t border-white/10 pt-8"
           >
-            {[
-              { value: '6', label: t('card.count') },
-              { value: 'MENA', label: 'Region' },
-              { value: '1', label: 'Unified System' },
-            ].map(({ value, label }) => (
+            {miniStats.map(({ value, label }) => (
               <div key={label} className="flex flex-col">
                 <span className="text-2xl font-black text-white sm:text-3xl">{value}</span>
                 <span className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">{label}</span>

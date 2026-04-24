@@ -52,7 +52,12 @@
       "eyebrow": "منظومة متكاملة",
       "title": "F&B · الشرق الأوسط · أفريقيا",
       "count": "٦ براندات"
-    }
+    },
+    "miniStats": [
+      { "value": "٦", "label": "براندات نشطة" },
+      { "value": "MENA", "label": "المنطقة" },
+      { "value": "١", "label": "سيستم موحد" }
+    ]
   },
   "services": {
     "eyebrow": "خدماتنا",
