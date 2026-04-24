@@ -15,40 +15,38 @@ export function About() {
   const imgY = useTransform(scrollYProgress, [0, 1], ['-4%', '4%']);
 
   return (
-    <section ref={ref} id="about" className="section bg-white overflow-hidden">
-      <div className="container mx-auto">
-        <div className="grid gap-12 sm:gap-16 lg:grid-cols-2 lg:items-center">
+    <section ref={ref} id="about" className="relative overflow-hidden bg-white py-14 sm:py-20 md:py-28">
+      <div className="grid items-center gap-10 sm:gap-14 lg:grid-cols-2 lg:gap-0">
 
-          {/* Image — parallax + scale in */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
-          >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100 sm:aspect-[3/4]">
-              <motion.div
-                style={{ scale: imgScale, y: imgY }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src="/images/shakencake/sc-05.jpg"
-                  alt={t('title')}
-                  fill
-                  sizes="(min-width:1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </motion.div>
-            </div>
+        {/* Image — full-bleed parallax */}
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
+        >
+          <div className="relative aspect-[4/5] overflow-hidden bg-gray-100 sm:aspect-[3/4] lg:aspect-auto lg:h-[620px] lg:rounded-e-[2.5rem] xl:h-[680px]">
+            <motion.div
+              style={{ scale: imgScale, y: imgY }}
+              className="absolute inset-0"
+            >
+              <Image
+                src="/images/shakencake/sc-05.jpg"
+                alt=""
+                fill
+                sizes="(min-width:1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </motion.div>
 
-            {/* Floating stat card */}
+            {/* Floating stat card — inside image, inner edge */}
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6, type: 'spring' }}
-              className="absolute -bottom-6 end-2 rounded-2xl border border-gray-100 bg-white px-4 py-4 shadow-card sm:-end-4 sm:px-6 sm:py-5 md:-end-8"
+              className="absolute bottom-5 end-5 rounded-2xl border border-white/30 bg-white/95 px-4 py-4 shadow-card backdrop-blur-md sm:bottom-8 sm:end-8 sm:px-6 sm:py-5"
             >
               <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-brand-500 sm:text-[10px] sm:tracking-[0.22em]">
                 {t('card.eyebrow')}
@@ -61,45 +59,46 @@ export function About() {
                 <span className="text-xs font-semibold text-gray-400">{t('card.count')}</span>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        {/* Text — with inner padding */}
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="px-5 sm:px-8 md:px-12 lg:max-w-xl lg:px-12 xl:px-20"
+        >
+          <div className="eyebrow mb-4 sm:mb-5">{t('eyebrow')}</div>
+          <h2 className="h-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem]">
+            {t('title')}
+          </h2>
+          <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-gray-500 sm:mt-8 sm:space-y-5 sm:text-base">
+            {paragraphs.map((p, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+              >
+                {p}
+              </motion.p>
+            ))}
+          </div>
+          <motion.a
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            href="#brands"
+            className="mt-10 inline-flex items-center gap-2 text-sm font-bold text-brand-500 transition hover:text-brand-600"
           >
-            <div className="eyebrow mb-4 sm:mb-5">{t('eyebrow')}</div>
-            <h2 className="h-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem]">
-              {t('title')}
-            </h2>
-            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-gray-500 sm:mt-8 sm:space-y-5 sm:text-base">
-              {paragraphs.map((p, i) => (
-                <motion.p
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
-                >
-                  {p}
-                </motion.p>
-              ))}
-            </div>
-            <motion.a
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              href="#brands"
-              className="mt-10 inline-flex items-center gap-2 text-sm font-bold text-brand-500 transition hover:text-brand-600"
-            >
-              {t('cta')}
-              <span className="rtl:rotate-180 transition-transform group-hover:translate-x-1">→</span>
-            </motion.a>
-          </motion.div>
-        </div>
+            {t('cta')}
+            <span className="rtl:rotate-180 transition-transform group-hover:translate-x-1">→</span>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
