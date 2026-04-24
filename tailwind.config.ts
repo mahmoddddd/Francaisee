@@ -14,8 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-montserrat)', 'var(--font-alexandria)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-montserrat)', 'var(--font-alexandria)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-primary)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-primary)', 'system-ui', 'sans-serif'],
         arabic: ['var(--font-alexandria)', 'system-ui', 'sans-serif']
       },
       colors: {

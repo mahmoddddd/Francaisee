@@ -14,4 +14,6 @@ tsconfig.tsbuildinfo
 *.zip
 txt.txt
 
-# Images — large files, manage separately (upload to CDN or Vercel blob)
+# Archived/unused images — kept locally for reference, not deployed
+_unused_images/
+

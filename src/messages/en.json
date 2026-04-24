@@ -52,7 +52,12 @@
       "eyebrow": "Ecosystem",
       "title": "F&B · MENA · Africa",
       "count": "6 brands"
-    }
+    },
+    "miniStats": [
+      { "value": "6", "label": "Operating brands" },
+      { "value": "MENA", "label": "Region" },
+      { "value": "1", "label": "Unified system" }
+    ]
   },
   "services": {
     "eyebrow": "What we do",

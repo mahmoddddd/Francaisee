@@ -21,6 +21,14 @@
   html[dir='rtl'] body {
     letter-spacing: 0;
   }
+
+  html[lang='en'] {
+    --font-primary: var(--font-montserrat);
+  }
+
+  html[lang='ar'] {
+    --font-primary: var(--font-alexandria);
+  }
 }
 
 @layer components {
